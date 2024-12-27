@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      
+"3000:3000"
+  volumes:
+.:/usr/src/app
+command: npm start
+db:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: your_password
+    MYSQL_DATABASE: your_database
+  ports:
+"3306:3306"
