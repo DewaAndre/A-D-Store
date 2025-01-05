@@ -6,7 +6,7 @@
         <div class="flex justify-center mb-8">
             @foreach ($imagesByCategory as $categoryKey => $images)
                 <button 
-                    class="tab-link px-4 py-2 text-sm font-semibold text-gray-500 hover:text-[#543A14] border-b-2 border-transparent" 
+                    class="tab-link px-4 py-2 text-sm font-semibold text-gray-500 hover:text-[#543A14] border-b-2 border-transparent"
                     onclick="showTab('{{ $categoryKey }}')">
                     {{ ucwords(str_replace('_', ' ', $categoryKey)) }}
                 </button>
@@ -31,11 +31,11 @@
 
             {{-- Pagination --}}
             <div class="col-span-full flex justify-center mt-4 bg-transparent">
-                {{ $images->links() }}
+                {{ $images->appends(['tab' => $categoryKey])->links() }}
             </div>
         </div>
         @endforeach
-    </div>  
+    </div>
 
     {{-- Footer --}}
     @include('components.footer')
@@ -50,21 +50,21 @@
                 link.classList.remove('border-[#543A14]', 'text-[#543A14]');
                 link.classList.add('text-gray-500');
             });
-    
+
             document.getElementById(tabId).style.display = 'grid';
             document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('border-[#543A14]', 'text-[#543A14]');
+
+            // Update query string
+            const url = new URL(window.location);
+            url.searchParams.set('tab', tabId);
+            history.pushState({}, '', url);
         }
-    
-        // Show the first tab by default
+
+        // Show the correct tab on page load based on query string
         document.addEventListener('DOMContentLoaded', () => {
-            const firstTab = document.querySelector('.tab-content');
-            if (firstTab) {
-                firstTab.style.display = 'grid';
-                const firstTabButton = document.querySelector('.tab-link');
-                if (firstTabButton) {
-                    firstTabButton.classList.add('border-[#543A14]', 'text-[#543A14]');
-                }
-            }
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeTab = urlParams.get('tab') || '{{ array_key_first($imagesByCategory) }}'; // Default to the first tab
+            showTab(activeTab);
         });
-    </script>    
+    </script>
 </x-layout>

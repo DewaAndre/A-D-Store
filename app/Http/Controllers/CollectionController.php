@@ -2,26 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Image;
 
 class CollectionController extends Controller
 {
+    // Constructor can be removed or customized based on requirements
+    public function __construct()
+    {
+        // Add middleware if necessary
+    }
+
     public function index(Request $request)
     {
-        // Daftar kategori produk
-        $categories = ['T-shirt', 'Long Sleeve', 'Long Pants', 'Shoes'];
+        $categories = ['T-shirt', 'Long-Sleeve', 'Pants', 'Shoes'];  // Define categories
         $imagesByCategory = [];
 
-        // Memperoleh data gambar berdasarkan kategori dan memaginasi hasilnya
+        // Fetch images by category and paginate them
         foreach ($categories as $category) {
             $imagesByCategory[strtolower(str_replace(' ', '_', $category))] = Image::where('kategori', $category)
-                ->paginate(10) // Menambahkan pagination untuk 10 gambar per halaman
-                ->appends($request->query()); // Menambahkan parameter query untuk tetap menyertakan query di pagination
+                ->paginate(10)
+                ->appends($request->query());  // Preserve query parameters (like page and tab)
         }
 
-        // Mengirimkan data ke view
-        return view('collection', ['imagesByCategory' => $imagesByCategory]);
+        return view('collection', [
+            'imagesByCategory' => $imagesByCategory,
+        ]);
     }
+
 }

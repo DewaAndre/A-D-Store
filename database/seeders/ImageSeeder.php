@@ -15,15 +15,17 @@ class ImageSeeder extends Seeder
     public function run()
     {
         Image::create([
-            'title' => 'T-SHIRT BLACK',
-            'harga' => 40000,
-            'stok' => 30,
-            'path' => 'img/t-shirt/baju3.png',
+            'id_image' => '102',
+            'title' => 'Von Dutch T-Shirt 102 White',
+            'harga' => 400000,
+            'stok' => 303,
+            'path' => 'img/t-shirt/t-shirt (2).png',
             'kategori' => 'T-Shirt',
-            'deskripsi' => 'baju hitam terbaru',
+            'deskripsi' => 'baju putih terbaru',
         ]);
 
         Image::create([
+            'id_image' => '103',
             'title' => 'T-SHIRT BLACK',
             'harga' => 400000,
             'stok' => 120,
@@ -33,6 +35,7 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'id_image' => 'T-SHIRT BLACK',
             'title' => 'T-SHIRT BLACK',
             'harga' => 400000,
             'stok' => 120,
@@ -42,6 +45,7 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'id_image' => 'T-SHIRT WHITE',
             'title' => 'T-SHIRT WHITE',
             'harga' => 400000,
             'stok' => 120,

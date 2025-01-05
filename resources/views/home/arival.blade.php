@@ -17,10 +17,12 @@
     <div id="{{ $categoryKey }}" class="tab-content grid grid-cols-1 md:grid-cols-5 gap-6" style="display: none;">
         @forelse ($images as $image)
             <div class="bg-white rounded-lg shadow-lg p-4 max-w-[500px] mx-auto" style="width: -webkit-fill-available;">
-                <img src="{{ asset($image->path) }}" alt="{{ $image->title }}" class="w-full h-48 object-contain rounded-lg">
-                <h3 class="text-lg font-semibold mt-2">{{ $image->title }}</h3>
-                <p class="text-gray-500">Rp. {{ number_format($image->harga, 0, ',', '.') }}</p>
-                <p class="text-sm text-gray-500">{{ $image->stok }} in Stock</p>
+                <a href="{{ route('image.detail', ['id' => $image->id_image]) }}">
+                    <img src="{{ asset($image->path) }}" alt="{{ $image->title }}" class="w-full h-48 object-contain rounded-lg">
+                    <h3 class="text-lg font-semibold mt-2">{{ $image->title }}</h3>
+                    <p class="text-gray-500">Rp. {{ number_format($image->harga, 0, ',', '.') }}</p>
+                    <p class="text-sm text-gray-500">{{ $image->stok }} in Stock</p>
+                </a>
             </div>
         @empty
             <p class="text-gray-500 col-span-full text-center">No items available in this category.</p>
@@ -28,7 +30,6 @@
     </div>
     @endforeach
 </div>
-
 
 <script>
     // Fungsi untuk menampilkan tab berdasarkan ID

@@ -9,9 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $table = 'images';
-
-    protected $primaryKey = 'id_image';
+    protected $table = 'images'; // Nama tabel
+    protected $primaryKey = 'id_image'; // Primary key adalah id_image
 
     protected $fillable = [
         'title',
@@ -20,11 +19,11 @@ class Image extends Model
         'path',
         'kategori',
         'deskripsi',
-        // 'id_seller', // Hapus kolom 'id_seller' dari fillable
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+    
 }

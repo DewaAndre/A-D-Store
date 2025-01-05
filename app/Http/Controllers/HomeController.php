@@ -9,7 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         // Mengambil data berdasarkan kategori
-        $categories = ['T-shirt', 'Long Sleeve', 'Long Pants', 'Shoes'];
+        $categories = ['T-shirt', 'Long-Sleeve', 'Pants', 'Shoes'];
         $imagesByCategory = [];
 
         foreach ($categories as $category) {
@@ -22,4 +22,6 @@ class HomeController extends Controller
         // Mengirimkan data ke view
         return view('home', ['imagesByCategory' => $imagesByCategory]);
     }
+
+    
 }
