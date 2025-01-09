@@ -13,4 +13,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class, 'id_user');
     }
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 }
